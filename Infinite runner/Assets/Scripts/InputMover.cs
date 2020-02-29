@@ -32,8 +32,7 @@ public class InputMover : MonoBehaviour {
 
         if (input.sqrMagnitude > 1) input.Normalize();
 
-        //transform.position = input;
-        //line.SetPosition(1, input);
+        
         ++points;
         setPointDisplay();
 
@@ -42,7 +41,7 @@ public class InputMover : MonoBehaviour {
     {
         rb.AddForce(playerController.GetAxis1x(false) * speed * turnSpeedAdjust * Time.deltaTime, 0f, forwardAccel);
         //print(rb.velocity);
-        if (rb.velocity.z >= 35) forwardAccel = 0f;
+        if (rb.velocity.z >= 35) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 35f);
         else forwardAccel = 6f;
     }
     void OnTriggerEnter(Collider other)

@@ -7,7 +7,7 @@ public class ShockwaveController : MonoBehaviour
     public GameObject yeti;
     private Vector3 centerPoint = new Vector3(0, 0, 0);
     private Color matColor;
-    //private float alphaValue = 1f;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -24,26 +24,25 @@ public class ShockwaveController : MonoBehaviour
     void FixedUpdate()
     {
         
-        //if (alphaValue > 0f) alphaValue -= 0.036f;
-        //else alphaValue = 0f;
-        GetComponent<Renderer>().material.SetColor("_Color", matColor);
-        transform.localScale += new Vector3(.4f, .4f, .4f);
         
-        //print(alphaValue);
-        if (transform.localScale.x >= 12f)
+        GetComponent<Renderer>().material.SetColor("_Color", matColor);
+        transform.localScale += new Vector3(.6f, .6f, .6f);
+        
+        
+        if (transform.localScale.x >= 18f)
         {
-            //alphaValue = 1;
-            print("bleh");
+
             Destroy(gameObject);
             StopCoroutine("Fade");
 
         }
+
     }
     IEnumerator Fade()
     {
-        for (float ft = 1f; ft >= 0; ft -= 0.036f)
+        for (float ft = 1f; ft >= 0; ft -= Time.deltaTime)
         {
-            print(ft);
+           
             Color c = matColor;
             c.a = ft;
             matColor = c;
