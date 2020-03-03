@@ -8,16 +8,14 @@ public class InputManager {
     {
         public KeyCode jump;
         public string axis1x;
-        public string axis1y;
         public string axis1z;
-        public bool invertY1 = false;
+        public bool invertZ1 = false;
 
         public InputConfig()
         {
 			jump = KeyCode.Space;
             axis1x = "Horizontal";
-            axis1y = "Vertical";
-            axis1z = "Jump";
+            axis1z = "Vertical";
         }
 
         public bool OnJump(bool fireWhileHolding = false)
@@ -38,19 +36,15 @@ public class InputManager {
         {
             return GetAxis(axis1x, raw);
         }
-        public float GetAxis1y(bool raw = false)
-        {
-            float val = GetAxis(axis1y, raw);
-            if (invertY1) val *= -1;
-            return val;
-        }
         public float GetAxis1z(bool raw = false)
         {
-            return GetAxis(axis1z, raw);
+            float val = GetAxis(axis1z, raw);
+            if (invertZ1) val *= -1;
+            return val;
         }
         public Vector3 GetAxis1(bool raw = false)
         {
-            return new Vector3(GetAxis1x(raw), GetAxis1y(raw), GetAxis1z(raw));
+            return new Vector3(GetAxis1x(raw), 0f, GetAxis1z(raw));
         }
     }
 
