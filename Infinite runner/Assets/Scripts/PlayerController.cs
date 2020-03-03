@@ -32,6 +32,13 @@ public class PlayerController : MonoBehaviour
     private float distanceToPoints;
     private float scaleChanger;
     private float acceleration;
+    //power ups
+    private float acornTime;
+    private float pointsMultTime;
+    private int acorn;
+    private int pointsMult;
+    private bool hit;
+    
     
 
     // Start is called before the first frame update
@@ -47,6 +54,11 @@ public class PlayerController : MonoBehaviour
         scaleChanger = 0;
         acceleration = 0;
         rb.angularDrag = 0f;
+        acorn = 1;
+        acornTime = 0f;
+        hit = false;
+        pointsMult = 1;
+        pointsMultTime = 0f;
     }
 
     // Update is called once per frame
@@ -96,19 +108,19 @@ public class PlayerController : MonoBehaviour
         {
             maxVel = 4f * rb.mass;//min = 4, max = 5.32
             acceleration = map(distanceTraveled, 0f, 33f, .5f, .75f);
-            rb.velocity += new Vector3(playerController.GetAxis1x() * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 8 m/s^2, max = 6.259 m/s^2
+            rb.velocity += new Vector3(playerController.GetAxis1x() * acorn * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 8 m/s^2, max = 6.259 m/s^2
         }
         else if (rb.mass < 1.66f)
         {
             maxVel = 5f * rb.mass;//min = 6.65, max = 8.3
             acceleration = map(distanceTraveled, 33f, 66f, 1.25f, 2f);
-            rb.velocity += new Vector3(playerController.GetAxis1x() * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 5.32 m/s^2, max = 4.15 m/s^2
+            rb.velocity += new Vector3(playerController.GetAxis1x() * acorn * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 5.32 m/s^2, max = 4.15 m/s^2
         }
         else
         {
             maxVel = 6f * rb.mass;//min = 9.96, max = 12
             acceleration = map(distanceTraveled, 66f, 100f, 3f, 4.2f);
-            rb.velocity += new Vector3(playerController.GetAxis1x() * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 3.32 m/s^2, max = 2.857 m/s^2
+            rb.velocity += new Vector3(playerController.GetAxis1x() * acorn * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 3.32 m/s^2, max = 2.857 m/s^2
         }
 
         //friction so that you actually slow down when not pressing something. Return to 0 horizontal velocity faster at lower masses
@@ -117,13 +129,13 @@ public class PlayerController : MonoBehaviour
 
         if (rb.velocity.x != 0f && playerController.GetAxis1x() == 0)//if no player input, but horizontal movement
         {
-            rb.velocity += new Vector3((rb.velocity.x / Mathf.Abs(rb.velocity.x)) * -1 * adjustment * maxVel * (Time.fixedDeltaTime / acceleration), 0f, 0f);
+            rb.velocity += new Vector3((rb.velocity.x / Mathf.Abs(rb.velocity.x)) * -1 * adjustment * acorn * maxVel * (Time.fixedDeltaTime / acceleration), 0f, 0f);
         }
         
         //for when you're moving in one direction and then try to move in the other
         if((rb.velocity.x < 0f && playerController.GetAxis1x() > 0f) || (rb.velocity.x > 0f && playerController.GetAxis1x() < 0f))
         {
-            rb.velocity += new Vector3(playerController.GetAxis1x() * maxVel * (Time.fixedDeltaTime / acceleration), 0f, 0f);
+            rb.velocity += new Vector3(playerController.GetAxis1x() * acorn * maxVel * (Time.fixedDeltaTime / acceleration), 0f, 0f);
         }
 
 
@@ -151,27 +163,64 @@ public class PlayerController : MonoBehaviour
         if (distanceTraveled < 0f) distanceTraveled = 0f;                                                                                                       //change to death screen
         prevZ = transform.position.z;
 
+        //points power up time
+        pointsMultTime += Time.fixedDeltaTime;
+        if (pointsMultTime == 2 && (pointsMultTime > 10f || hit))
+        {
+            pointsMultTime = 0;
+            pointsMult = 1;
+            hit = false;
+        }
+        else if (pointsMult == 1)
+        {
+            pointsMultTime = 0f;
+        }
+
         //add points based on deltaDistance
         distanceToPoints += Mathf.Abs(deltaDistance);
         if(distanceToPoints > 3f)
         {
-            ++points;
+            points += pointsMult;
             distanceToPoints -= 3f;
         }
 
+
+        //acorn power up
+        acornTime += Time.fixedDeltaTime;
+        if (acorn == 2 && (acornTime > 10f || hit))
+        {
+            acornTime = 0;
+            acorn = 1;
+            hit = false;
+        }
+        else if (acorn == 1)
+        {
+            acornTime = 0f;
+        }
+
+        //at the very end of this code, if you were hit, reset hit to false because otherwise you would be in permanent hit without power up
+        if (hit) hit = false;
     }//fixedUpdate()
 
 
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Power up"))
+        if(other.gameObject.CompareTag("Acorn"))
         {
+            acorn = 2;
+            other.gameObject.SetActive(false);
+        }
+
+        else if(other.gameObject.CompareTag("Pinecone"))
+        {
+            pointsMult = 2;
             other.gameObject.SetActive(false);
         }
 
         else if (other.gameObject.CompareTag("Obstacle"))
         {
+            hit = true;
             other.gameObject.SetActive(false);
             distanceTraveled -= 33;
             if (rb.mass < 1.33) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, .5f);
