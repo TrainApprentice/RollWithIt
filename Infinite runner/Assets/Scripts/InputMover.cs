@@ -43,6 +43,7 @@ public class InputMover : MonoBehaviour {
         //print(rb.velocity);
         if (rb.velocity.z >= 35) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 35f);
         else forwardAccel = 6f;
+        //print("Player: " + transform.position);
     }
     void OnTriggerEnter(Collider other)
     {

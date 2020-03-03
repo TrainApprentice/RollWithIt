@@ -14,7 +14,7 @@ public class SnowballManager : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        yeti = GameObject.Find("Sphere");
+        yeti = GameObject.Find("Running (1)");
         transform.position = yeti.GetComponent<YetiAI>().snowballPos;
     }
 
@@ -23,7 +23,7 @@ public class SnowballManager : MonoBehaviour
     {
         
         rb.velocity = new Vector3(0f, 0f, 100f);
-        print(rb.position);
+        //print(rb.position);
         currYPos -= (Time.deltaTime * 5 / 6);
         currScale -= (Time.deltaTime * 5 / 3);
         transform.localScale = new Vector3(currScale, currScale, currScale);

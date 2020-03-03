@@ -13,7 +13,7 @@ public class ReticleController : MonoBehaviour
     void Start()
         
     {
-        yeti = GameObject.Find("Sphere");
+        yeti = GameObject.Find("Running (1)");
         centerPoint = yeti.GetComponent<YetiAI>().jumpPoint;
     }
 

@@ -34,11 +34,14 @@ public class YetiAI : MonoBehaviour
     private bool jumpReticleMade = false;
     private bool hasJumped = false;
     private bool shockSpawned = false;
+    
 
     private float jumpCountdown;
     private float snowballCountdown;
     private float jumpChance = .3f;
     private float snowballChance = .5f;
+
+    //private Animation anim;
 
 
 
@@ -50,23 +53,27 @@ public class YetiAI : MonoBehaviour
         playerBody = player.GetComponent<Rigidbody>();
         activateAbilities = InputManager.player2;
         hitBall = GetComponent<SphereCollider>();
-
-
+        snowballCountdown = Random.Range(-3f, 3f) + 8;
+        jumpCountdown = Random.Range(-2f, 2f) + 5;
+        //anim = GetComponent<Animation>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        print(transform.position);
         RunAI();
 
         StandStill();
         UpdateReticle();
-
+        //if (!anim.isPlaying)
+        
 
     }
     private void FixedUpdate()
     {
-
+        //print("Yeti: " + transform.position);
+        
         moveDistance = Mathf.Abs(rb.position.x - playerBody.position.x);
 
         if (moveDistance >= 1)
@@ -93,7 +100,7 @@ public class YetiAI : MonoBehaviour
         }
 
         if (rb.velocity.z >= 35 || (Mathf.Abs(rb.position.z - playerBody.position.z) <= 2) || rb.position.z > playerBody.position.z) forwardAccel = 0f;
-        else if ((Mathf.Abs(rb.position.z - playerBody.position.z) >= 30)) rb.velocity = playerBody.velocity;
+        else if ((Mathf.Abs(rb.position.z - playerBody.position.z) >= 30) && playerBody.velocity.z != 0) rb.velocity = playerBody.velocity;
         else forwardAccel = 5.5f;
     }
     private void JumpAttack()
@@ -210,7 +217,7 @@ public class YetiAI : MonoBehaviour
         }
         else
         {
-            // Send that fucker!
+            // Send that snowball!
             snowballPos = new Vector3(lanePoint.x, lanePoint.y + 5f, playerBody.position.z - 20f);
             Instantiate(Snowball, snowballPos, Quaternion.identity);
             attackTimeDelay = 5f;
@@ -231,21 +238,33 @@ public class YetiAI : MonoBehaviour
         if (jumpCountdown <= 0 && !launching)
         {
             float randChance = Random.Range(0f, 1f);
-            if (randChance <= jumpChance) launching = true;
+            //print(randChance + ": Random Chance");
+            if (randChance <= jumpChance)
+            {
+                jumpCountdown = Random.Range(-2f, 2f) + 5;
+                launching = true;
+                
+            }
             else jumpCountdown = Random.Range(-2f, 2f) + 5;
         }
         if (snowballCountdown <= 0 && !attacking)
         {
             
             float randChance = Random.Range(0f, 1f);
-            if (randChance <= snowballChance) attacking = true;
+            if (randChance <= snowballChance)
+            {
+                snowballCountdown = Random.Range(-3f, 3f) + 8;
+                attacking = true;
+                
+            }
+
             else snowballCountdown = Random.Range(-3f, 3f) + 8;
         }
         if (!attacking && !launching)
         {
             jumpCountdown -= Time.deltaTime;
             snowballCountdown -= Time.deltaTime;
-            print(snowballCountdown);
+            //print(snowballCountdown);
         }
         if (attacking) SummonSnowball();
         if (launching) JumpAttack();

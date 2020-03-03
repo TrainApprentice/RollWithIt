@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8579044191490892741}
   - component: {fileID: 8579044191490892742}
   - component: {fileID: 8579044191490892747}
-  - component: {fileID: 8579044191490892746}
   m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
@@ -110,30 +109,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8579044191490892746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8579044191490892736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91b9db2e91c097d459ae923a3b19e1e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 8579044191490892747}
-  hitBall: {fileID: 0}
-  player: {fileID: 0}
-  ground: {fileID: 0}
-  JumpReticle: {fileID: 9153490652550875467, guid: d47a5fea178d1034480ae831eaeaad65,
-    type: 3}
-  Shockwave: {fileID: 7827080614278824976, guid: 56d657005a9d1424abf0fd3ec7a9cb34,
-    type: 3}
-  Snowball: {fileID: 0}
-  Lane: {fileID: 0}
-  jumpPoint: {x: 0, y: 0, z: 0}
-  lanePoint: {x: 0, y: 0, z: 0}
-  snowballPos: {x: 0, y: 0, z: 0}
-  JumpLanded: 0
-  laneSet: 0
