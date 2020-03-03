@@ -10,8 +10,6 @@ using UnityEngine.UI;
  * Make sure z speed and stuff is good with everyone else
  * take out velocity texts?
  * take out the space, v, m keys
- * take out z: velocity = 0 when low enough velocity
- * take out the s = backwards in the preferences in unity
  */
 
 
@@ -81,26 +79,7 @@ public class PlayerController : MonoBehaviour
         Vector3 scaleChange = new Vector3(scaleChanger, scaleChanger, scaleChanger);
         rb.transform.localScale = scaleChange;
 
-        //set horizontal (and forward/backward) speed cap based on mass. calculate maxVel, time (acceleration). addVelocity
-        //movement in z direction is currently just for testing. Change back to 0f?
-        if (rb.mass < 1.33f)
-        {
-            maxVel = 4f * rb.mass;//min = 4, max = 5.32
-            acceleration = map(distanceTraveled, 0f, 33f, .5f, .75f);
-            rb.velocity += new Vector3(playerController.GetAxis1x() * maxVel * (Time.fixedDeltaTime / acceleration), 0f, playerController.GetAxis1z() * maxVel * (Time.fixedDeltaTime / acceleration));//min = 8 m/s^2, max = 6.259 m/s^2
-        }
-        else if (rb.mass < 1.66f)
-        {
-            maxVel = 5f * rb.mass;//min = 6.65, max = 8.3
-            acceleration = map(distanceTraveled, 33f, 66f, 1.25f, 2f);
-            rb.velocity += new Vector3(playerController.GetAxis1x() * maxVel * (Time.fixedDeltaTime / acceleration), 0f, playerController.GetAxis1z() * maxVel * (Time.fixedDeltaTime / acceleration));//min = 5.32 m/s^2, max = 4.15 m/s^2
-        }
-        else
-        {
-            maxVel = 6f * rb.mass;//min = 9.96, max = 12
-            acceleration = map(distanceTraveled, 66f, 100f, 3f, 4.2f);
-            rb.velocity += new Vector3(playerController.GetAxis1x() * maxVel * (Time.fixedDeltaTime / acceleration), 0f, playerController.GetAxis1z() * maxVel * (Time.fixedDeltaTime / acceleration));//min = 3.32 m/s^2, max = 2.857 m/s^2
-        }
+        //set horizontal (and forward/backward) speed cap based on mass. calculate maxVel, time (acceleration). addVelocity. in fixedUpdate()
 
         //friction/returning to 0: in fixedUpdate()
 
@@ -112,6 +91,26 @@ public class PlayerController : MonoBehaviour
     // FixedUpdate is called once per physics calculation
     void FixedUpdate()
     {
+        //set horizontal (and forward/backward) speed cap based on mass. calculate maxVel, time (acceleration). addVelocity
+        if (rb.mass < 1.33f)
+        {
+            maxVel = 4f * rb.mass;//min = 4, max = 5.32
+            acceleration = map(distanceTraveled, 0f, 33f, .5f, .75f);
+            rb.velocity += new Vector3(playerController.GetAxis1x() * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 8 m/s^2, max = 6.259 m/s^2
+        }
+        else if (rb.mass < 1.66f)
+        {
+            maxVel = 5f * rb.mass;//min = 6.65, max = 8.3
+            acceleration = map(distanceTraveled, 33f, 66f, 1.25f, 2f);
+            rb.velocity += new Vector3(playerController.GetAxis1x() * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 5.32 m/s^2, max = 4.15 m/s^2
+        }
+        else
+        {
+            maxVel = 6f * rb.mass;//min = 9.96, max = 12
+            acceleration = map(distanceTraveled, 66f, 100f, 3f, 4.2f);
+            rb.velocity += new Vector3(playerController.GetAxis1x() * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 3.32 m/s^2, max = 2.857 m/s^2
+        }
+
         //friction so that you actually slow down when not pressing something. Return to 0 horizontal velocity faster at lower masses
         //gets absoulte value of amount a joystick is pushed in a direction
         float adjustment = map(Mathf.Abs(playerController.GetAxis1x()), 0, 1, 1, 0);
@@ -141,9 +140,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, maxVel * (rb.velocity.z / Mathf.Abs(rb.velocity.z)));
         }
-        //velocity = 0 when low enough velocity
-        //else if ((playerController.GetAxis1z() == 0) && Mathf.Abs(rb.velocity.z) < .2f) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0f);
-        //to replace the line above: keep a minimum z speed
+        //keep a minimum z speed
         else if (Mathf.Abs(rb.velocity.z) < .5f) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, .5f);
 
 
@@ -151,7 +148,7 @@ public class PlayerController : MonoBehaviour
         deltaDistance = transform.position.z - prevZ;
         distanceTraveled += Mathf.Abs(deltaDistance);
         if (distanceTraveled > 100f) distanceTraveled = 100f;
-        if (distanceTraveled < 0f) distanceTraveled = 0f;                                                                                                       //possibly change to death screen
+        if (distanceTraveled < 0f) distanceTraveled = 0f;                                                                                                       //change to death screen
         prevZ = transform.position.z;
 
         //add points based on deltaDistance
@@ -177,7 +174,7 @@ public class PlayerController : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             distanceTraveled -= 33;
-            if (rb.mass < 1.33) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0f);
+            if (rb.mass < 1.33) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, .5f);
             else if (rb.mass < 1.66) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 2f);
             else rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 4f);
         }
