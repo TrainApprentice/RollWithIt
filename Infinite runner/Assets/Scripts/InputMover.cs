@@ -32,7 +32,7 @@ public class InputMover : MonoBehaviour {
 
         if (input.sqrMagnitude > 1) input.Normalize();
 
-        
+        //print("Running");
         ++points;
         setPointDisplay();
 
@@ -40,7 +40,7 @@ public class InputMover : MonoBehaviour {
     void FixedUpdate()
     {
         rb.AddForce(playerController.GetAxis1x(false) * speed * turnSpeedAdjust * Time.deltaTime, 0f, forwardAccel);
-        //print(rb.velocity);
+        print(rb.velocity);
         if (rb.velocity.z >= 35) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 35f);
         else forwardAccel = 6f;
         //print("Player: " + transform.position);
@@ -55,6 +55,6 @@ public class InputMover : MonoBehaviour {
 
     void setPointDisplay()
     {
-        pointDisplay.text = "Points: " + points.ToString();
+        //pointDisplay.text = "Points: " + points.ToString();
     }
 }

@@ -14,7 +14,7 @@ public class SnowballManager : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        yeti = GameObject.Find("Running (1)");
+        yeti = GameObject.Find("Sphere (1)");
         transform.position = yeti.GetComponent<YetiAI>().snowballPos;
     }
 

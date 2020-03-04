@@ -12,7 +12,7 @@ public class ShockwaveController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        yeti = GameObject.Find("Running (1)");
+        yeti = GameObject.Find("Sphere (1)");
         centerPoint = yeti.GetComponent<YetiAI>().transform.position;
         transform.localScale = new Vector3(1, 1, 1);
         transform.position = centerPoint;

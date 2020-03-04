@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 26bc24500f93ace4c9f391f41b8a7c48
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - patch: {fileID: 7785450740143438143, guid: ad49f0de181106d41b242e907efba24d, type: 3}
+  - playerRef: {instanceID: 0}
+  - randSpawn: {instanceID: 0}
+  - rock1: {fileID: 3720041969003733251, guid: 86c8e3db373fa734eafcf28405332c8b, type: 3}
+  - rock2: {fileID: 2841130085014444905, guid: 5c4a4bf31e997fa44b2fde1cba393d81, type: 3}
+  - rock3: {fileID: 4055212326770609253, guid: 87b97ce4670280b4180274c2440b9d45, type: 3}
+  - rock4: {fileID: 6605511504939700738, guid: 2800419ddec5b764a80e25e898a985af, type: 3}
+  - spruce: {fileID: 8437745214408148793, guid: 614df23ff4a231147bc8ab07e63894ca,
+      type: 3}
+  - fir: {fileID: 7463976558271944416, guid: 1c719364ed67e7e46a650be08940288d, type: 3}
+  - log1: {fileID: 314087269005400770, guid: f68b5ffb6620a564f9c7025b51a59a86, type: 3}
+  - log2: {fileID: 3119378806520035457, guid: db776c69e1a866640b8c3af67c931651, type: 3}
+  - log3: {fileID: 6274882338445425768, guid: 89ea36f9fe88c6f43a786c336a5ec9cb, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

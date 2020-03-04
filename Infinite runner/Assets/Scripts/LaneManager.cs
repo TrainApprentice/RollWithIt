@@ -9,7 +9,7 @@ public class LaneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        yeti = GameObject.Find("Running (1)");
+        yeti = GameObject.Find("Sphere (1)");
     }
 
     // Update is called once per frame

@@ -61,7 +61,7 @@ public class YetiAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(transform.position);
+        //print(transform.position);
         RunAI();
 
         StandStill();
@@ -254,6 +254,7 @@ public class YetiAI : MonoBehaviour
             if (randChance <= snowballChance)
             {
                 snowballCountdown = Random.Range(-3f, 3f) + 8;
+                print("Snow!");
                 attacking = true;
                 
             }
