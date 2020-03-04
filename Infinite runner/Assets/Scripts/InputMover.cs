@@ -1,27 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InputMover : MonoBehaviour {
 
     LineRenderer line;
     InputManager.InputConfig playerController;
-    public Rigidbody rb;
-    private float speed = 100f;
-    private float turnSpeedAdjust = 1f;
-    private float forwardAccel = 6f; // 6f
-    public int points;
-    public Text pointDisplay;
 
-    void Start () {
+	void Start () {
         line = GetComponent<LineRenderer>();
 
         playerController = InputManager.player1;
-        rb = GetComponent<Rigidbody>();
-        points = 0;
-        setPointDisplay();
-    }
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,6 +22,7 @@ public class InputMover : MonoBehaviour {
 
         if (input.sqrMagnitude > 1) input.Normalize();
 
+<<<<<<< HEAD
         //print("Running");
         ++points;
         setPointDisplay();
@@ -56,5 +47,10 @@ public class InputMover : MonoBehaviour {
     void setPointDisplay()
     {
         //pointDisplay.text = "Points: " + points.ToString();
+=======
+        transform.position = input;
+        line.SetPosition(1, input);
+        
+>>>>>>> Justin
     }
 }
