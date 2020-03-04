@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement2 : MonoBehaviour
 {
     public Rigidbody rb;
     private float coolspeed = 750f;
