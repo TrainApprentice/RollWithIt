@@ -122,4 +122,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06e8154c14274745bac0818f6b82af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yeti: {fileID: 8579044191490892736, guid: 366c6137e7997ce4fb03ab04d690272f, type: 3}
+  yeti: {fileID: 8579044191490892736, guid: 333cfa3951c53e8418a23d705b6ebd99, type: 3}

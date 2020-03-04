@@ -35,29 +35,29 @@ public class PlayerController : MonoBehaviour
     //display and required variables
     InputManager.InputConfig playerController;
     public Rigidbody rb;
-<<<<<<< HEAD
+// HEAD
     private float speed = 100f;
-=======
->>>>>>> Justin
+
+// Justin
     public int points;
     public Text pointDisplay;
     public float vel;
     public Text velocityDisplay;
     public float zVel;
     public Text zVelocityDisplay;
-<<<<<<< HEAD
+// HEAD
     //for changing sphere size
-=======
+
     //for changing sphere size and velocity
->>>>>>> Justin
+// Justin
     private float distanceTraveled;
     private float prevZ;
     private float maxVel;
     private float deltaDistance;
     private float distanceToPoints;
     private float scaleChanger;
-<<<<<<< HEAD
-=======
+// HEAD
+
     private float acceleration;
     //power ups
     private float acornTime;
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     private int pointsMult;
     private bool hit;
     
->>>>>>> Justin
+// Justin
     
 
     // Start is called before the first frame update
@@ -80,8 +80,8 @@ public class PlayerController : MonoBehaviour
         prevZ = transform.position.z;
         distanceToPoints = 0;
         scaleChanger = 0;
-<<<<<<< HEAD
-=======
+// HEAD
+
         acceleration = 0;
         rb.angularDrag = 0f;
         acorn = 1;
@@ -89,7 +89,8 @@ public class PlayerController : MonoBehaviour
         hit = false;
         pointsMult = 1;
         pointsMultTime = 0f;
->>>>>>> Justin
+        
+ //Justin
     }
 
     // Update is called once per frame
@@ -101,23 +102,23 @@ public class PlayerController : MonoBehaviour
         setVelocityDisplay();
         zVel = rb.velocity.z;
         zSetVelocityDisplay();
-<<<<<<< HEAD
+// HEAD
         rb.AddForce(playerController.GetAxis1x() * speed * Time.fixedDeltaTime, 0f, playerController.GetAxis1z() * speed * Time.fixedDeltaTime);
-        //print(speed * Time.fixedDeltaTime);
+        
 
 
 
-=======
+
         
         
->>>>>>> Justin
+// Justin
         /* pause
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Time.timeScale = 0f;
         }
         */
-<<<<<<< HEAD
+// HEAD
 
         /* manually change size
         if(Input.GetKeyDown(KeyCode.Space))
@@ -134,12 +135,13 @@ public class PlayerController : MonoBehaviour
             rb.angularDrag -= 0.05f;
             rb.mass -= 0.1f;
         }*/
-=======
+
         
         // manually change size for testing
         if (Input.GetKeyDown(KeyCode.Space)) distanceTraveled += 10f;
         if (Input.GetKeyDown(KeyCode.V)) distanceTraveled -= 10f;
         if (Input.GetKeyDown(KeyCode.M)) print(maxVel);
+        //if (Input.GetKeyDown(KeyCode.Q)) print(rb.velocity);
 
 
         //calculate mass, angular drag, and size by mapping distanceTraveled to them
@@ -147,6 +149,7 @@ public class PlayerController : MonoBehaviour
         scaleChanger = Mathf.Lerp(2f, 5f, (distanceTraveled / 100f));
         Vector3 scaleChange = new Vector3(scaleChanger, scaleChanger, scaleChanger);
         rb.transform.localScale = scaleChange;
+        
 
         //set horizontal (and forward/backward) speed cap based on mass. calculate maxVel, time (acceleration). addVelocity. in fixedUpdate()
 
@@ -155,18 +158,20 @@ public class PlayerController : MonoBehaviour
         //cap velocity if necessary: in fixedUpdate()
 
         //distance traveled, points: in fixedUpdate()
->>>>>>> Justin
+// Justin
     }
 
     // FixedUpdate is called once per physics calculation
     void FixedUpdate()
     {
-<<<<<<< HEAD
+        // HEAD
+        
         //add to distance traveled
         deltaDistance = transform.position.z - prevZ;
         distanceTraveled += Mathf.Abs(deltaDistance);
         if (distanceTraveled > 100f) distanceTraveled = 100f;
         prevZ = transform.position.z;
+        //print(distanceTraveled);
 
         //add points based on deltaDistance
         distanceToPoints += Mathf.Abs(deltaDistance);
@@ -206,14 +211,17 @@ public class PlayerController : MonoBehaviour
          * change since you will turn slower by pressing opposite direction than not touching anything
          * all of them have the same rate of acceleration BUT NOT NEGATIVE ACCELERATION. Different max speeds
         */
+        /*
+       float adjustment = map(Mathf.Abs(playerController.GetAxis1x()), 0, 1, 1, 0);
 
+       rb.AddForce((rb.velocity.x / Mathf.Abs(rb.velocity.x)) * speed * Time.fixedDeltaTime * adjustment * -1, 0f, 0f);
+
+       if ((rb.velocity.x < 0f && playerController.GetAxis1x() > 0f) || (rb.velocity.x > 0f && playerController.GetAxis1x() < 0f))
+       {
+           rb.AddForce(speed * Time.fixedDeltaTime * playerController.GetAxis1x(), 0f, 0f);
+       }
+       */
         float adjustment = map(Mathf.Abs(playerController.GetAxis1x()), 0, 1, 1, 0);
-        rb.AddForce((rb.velocity.x / Mathf.Abs(rb.velocity.x)) * speed * Time.fixedDeltaTime * adjustment * -1, 0f, 0f);
-        if((rb.velocity.x < 0f && playerController.GetAxis1x() > 0f) || (rb.velocity.x > 0f && playerController.GetAxis1x() < 0f))
-        {
-            rb.AddForce(speed * Time.fixedDeltaTime * playerController.GetAxis1x(), 0f, 0f);
-        }
-
 
 
         /*if (rb.mass < .3) rb.velocity = new Vector3(rb.velocity.x * .94f, rb.velocity.y, rb.velocity.z);// * rb.mass * 3
@@ -232,31 +240,32 @@ public class PlayerController : MonoBehaviour
             //the above line is for "friction" (really it's just a speed decreaser)
         }
         */
-    }
-=======
+        
+
         //set horizontal (and forward/backward) speed cap based on mass. calculate maxVel, time (acceleration). addVelocity
         if (rb.mass < 1.33f)
         {
-            maxVel = 4f * rb.mass;//min = 4, max = 5.32
+            maxVel = 12f * rb.mass;//min = 4, max = 5.32
             acceleration = map(distanceTraveled, 0f, 33f, .5f, .75f);
             rb.velocity += new Vector3(playerController.GetAxis1x() * acorn * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 8 m/s^2, max = 6.259 m/s^2
+            //print(rb.velocity);
         }
         else if (rb.mass < 1.66f)
         {
-            maxVel = 5f * rb.mass;//min = 6.65, max = 8.3
+            maxVel = 15f * rb.mass;//min = 6.65, max = 8.3
             acceleration = map(distanceTraveled, 33f, 66f, 1.25f, 2f);
             rb.velocity += new Vector3(playerController.GetAxis1x() * acorn * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 5.32 m/s^2, max = 4.15 m/s^2
         }
         else
         {
-            maxVel = 6f * rb.mass;//min = 9.96, max = 12
+            maxVel = 18f * rb.mass;//min = 9.96, max = 12
             acceleration = map(distanceTraveled, 66f, 100f, 3f, 4.2f);
             rb.velocity += new Vector3(playerController.GetAxis1x() * acorn * maxVel * (Time.fixedDeltaTime / acceleration), 0f, .5f * maxVel * (Time.fixedDeltaTime / acceleration));//min = 3.32 m/s^2, max = 2.857 m/s^2
         }
 
         //friction so that you actually slow down when not pressing something. Return to 0 horizontal velocity faster at lower masses
         //gets absoulte value of amount a joystick is pushed in a direction
-        float adjustment = map(Mathf.Abs(playerController.GetAxis1x()), 0, 1, 1, 0);
+        adjustment = map(Mathf.Abs(playerController.GetAxis1x()), 0, 1, 1, 0);
 
         if (rb.velocity.x != 0f && playerController.GetAxis1x() == 0)//if no player input, but horizontal movement
         {
@@ -334,7 +343,7 @@ public class PlayerController : MonoBehaviour
     }//fixedUpdate()
 
 
->>>>>>> Justin
+// Justin
 
     void OnTriggerEnter(Collider other)
     {
@@ -363,17 +372,17 @@ public class PlayerController : MonoBehaviour
 
     void setPointDisplay()
     {
-        pointDisplay.text = "Points: " + points.ToString();
+        //pointDisplay.text = "Points: " + points.ToString();
     }
 
     void setVelocityDisplay()
     {
-        velocityDisplay.text = "X Velocity: " + vel.ToString();
+        //velocityDisplay.text = "X Velocity: " + vel.ToString();
     }
 
     void zSetVelocityDisplay()
     {
-        zVelocityDisplay.text = "Z Velocity: " + zVel.ToString();
+        //zVelocityDisplay.text = "Z Velocity: " + zVel.ToString();
     }
 
     float map(float input, float range1, float range2, float mapped1, float mapped2)

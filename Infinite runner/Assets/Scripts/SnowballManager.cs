@@ -8,7 +8,7 @@ public class SnowballManager : MonoBehaviour
     private Rigidbody rb;
     private float despawnTimer = 3f;
     private float currScale = 10f;
-    private float currYPos = 5f;
+    private float currYPos = 18f;
 
     // Start is called before the first frame update
     void Start()

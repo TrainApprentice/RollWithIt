@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8579044191490892741}
   - component: {fileID: 8579044191490892742}
   - component: {fileID: 8579044191490892747}
+  - component: {fileID: 6477542263869817718}
   m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
@@ -59,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5541249289264224cb2cce915756015e, type: 2}
+  - {fileID: 2100000, guid: df4d8a7cb8a4ea641b57ebcd2a01079e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,3 +110,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6477542263869817718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579044191490892736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7642f3289148ff0479e0a87ec0e03dd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  hitBall: {fileID: 0}
+  player: {fileID: 0}
+  ground: {fileID: 7785450740143438143, guid: ad49f0de181106d41b242e907efba24d, type: 3}
+  JumpReticle: {fileID: 9153490652550875467, guid: d47a5fea178d1034480ae831eaeaad65,
+    type: 3}
+  Shockwave: {fileID: 7827080614278824976, guid: 039483ee52b7b014081153babdb3d0f5,
+    type: 3}
+  Snowball: {fileID: 3430358005700535439, guid: 59b400e9875ebdf4b90c22f4467c100d,
+    type: 3}
+  Lane: {fileID: 7836923672454335613, guid: 37d5fd16aa49df94f8d60ee8669e6ae5, type: 3}
+  jumpPoint: {x: 0, y: 0, z: 0}
+  lanePoint: {x: 0, y: 0, z: 0}
+  snowballPos: {x: 0, y: 0, z: 0}
+  JumpLanded: 0
+  laneSet: 0

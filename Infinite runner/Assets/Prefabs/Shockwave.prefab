@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6654654957191644659}
   - component: {fileID: 2214439335563774438}
   - component: {fileID: 6346653118896213326}
-  - component: {fileID: 7204397517800860858}
+  - component: {fileID: 1990645221519513896}
   m_Layer: 10
   m_Name: Shockwave
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7827080614278824976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.046445, y: 13.529998, z: 639.01996}
+  m_LocalPosition: {x: 3.6406405, y: 13.513319, z: 366.96045}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf3779e1605b0c642903719fcf401662, type: 2}
+  - {fileID: 2100000, guid: 95fa17cb03d39324e9a9b81d66db8f0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,7 +93,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7204397517800860858
+--- !u!114 &1990645221519513896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7827080614278824976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b37497dd1440194e9c585a39bafbdfa, type: 3}
+  m_Script: {fileID: 11500000, guid: e8a13770f366fa24e90043817a85cdeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yeti: {fileID: 8579044191490892736, guid: 366c6137e7997ce4fb03ab04d690272f, type: 3}
+  yeti: {fileID: 0}

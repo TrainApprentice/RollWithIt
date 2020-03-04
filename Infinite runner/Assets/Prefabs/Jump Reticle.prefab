@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 9153490652550875471}
   - component: {fileID: 9153490652550875470}
   - component: {fileID: 9153490652550875469}
-  - component: {fileID: -9006256806629934557}
+  - component: {fileID: -2751787601114564095}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Jump Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9153490652550875467}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.13037e+14, y: 3.5, z: -457.7}
-  m_LocalScale: {x: 3.7386, y: 0.17301331, z: 3.7386}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3.7386, y: 0.2, z: 3.7386}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf3779e1605b0c642903719fcf401662, type: 2}
+  - {fileID: 2100000, guid: 436323bd46f95374a8a5b4b7452381cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-9006256806629934557
+--- !u!114 &-2751787601114564095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9153490652550875467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db796b7588f6c01489d5d13fe5c3419f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3bbbe2950d76b5e4ca97807e5127cb29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yeti: {fileID: 0}
+  yeti: {fileID: 8579044191490892736, guid: 333cfa3951c53e8418a23d705b6ebd99, type: 3}

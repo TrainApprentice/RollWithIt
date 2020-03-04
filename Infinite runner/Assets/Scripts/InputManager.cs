@@ -15,7 +15,7 @@ public class InputManager {
         public InputConfig()
         {
 			jump = KeyCode.Space;
-            Attack = KeyCode.T;
+            
             axis1x = "Horizontal";
             axis1z = "Vertical";
         }
@@ -24,10 +24,7 @@ public class InputManager {
         {
             return fireWhileHolding ? Input.GetKey(jump) : Input.GetKeyDown(jump);
         }
-        public bool OnAttack(bool fireWhileHolding = false)
-        {
-            return fireWhileHolding ? Input.GetKey(Attack) : Input.GetKeyDown(Attack);
-        }
+        
 
         private float GetAxis(string axis, bool raw = false)
         {

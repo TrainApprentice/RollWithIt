@@ -20,6 +20,7 @@ public class ReticleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(transform.position);
         centerPoint = yeti.GetComponent<YetiAI>().jumpPoint;
         transform.position = centerPoint;
         if (yeti.GetComponent<YetiAI>().JumpLanded)

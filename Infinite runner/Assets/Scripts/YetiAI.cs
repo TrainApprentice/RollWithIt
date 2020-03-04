@@ -61,18 +61,18 @@ public class YetiAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //print(transform.position);
+        
         RunAI();
 
         StandStill();
         UpdateReticle();
-        //if (!anim.isPlaying)
+       
         
 
     }
     private void FixedUpdate()
     {
-        //print("Yeti: " + transform.position);
+        
         
         moveDistance = Mathf.Abs(rb.position.x - playerBody.position.x);
 
@@ -102,6 +102,7 @@ public class YetiAI : MonoBehaviour
         if (rb.velocity.z >= 35 || (Mathf.Abs(rb.position.z - playerBody.position.z) <= 2) || rb.position.z > playerBody.position.z) forwardAccel = 0f;
         else if ((Mathf.Abs(rb.position.z - playerBody.position.z) >= 30) && playerBody.velocity.z != 0) rb.velocity = playerBody.velocity;
         else forwardAccel = 5.5f;
+        if (Input.GetKeyDown(KeyCode.Y)) print(rb.velocity);
     }
     private void JumpAttack()
     {
@@ -174,7 +175,7 @@ public class YetiAI : MonoBehaviour
 
         if (hasJumped && !shockSpawned)
         {
-            //print("Huzzah!");
+            
             Instantiate(Shockwave);
             Shockwave.transform.position = this.transform.position;
             shockSpawned = true;
@@ -189,11 +190,11 @@ public class YetiAI : MonoBehaviour
         {
 
             if (!hasJumped) {
-                jumpPoint = new Vector3(playerBody.position.x, playerBody.position.y, playerBody.position.z + 10);
+                jumpPoint = new Vector3(playerBody.position.x, 13.2f, playerBody.position.z + 15);
             }
             else
             {
-                jumpPoint = new Vector3(jumpPoint.x, jumpPoint.y, playerBody.position.z + 10);
+                jumpPoint = new Vector3(jumpPoint.x, jumpPoint.y, playerBody.position.z + 15);
             }
         }
 
@@ -202,18 +203,18 @@ public class YetiAI : MonoBehaviour
     {
         if (!laneSet)
         {
-            laneX = Random.Range(-10f, 10f);
-            lanePoint = new Vector3(laneX, 0.1f, playerBody.position.z + 75f);
+            laneX = Random.Range(playerBody.transform.position.x - 20f, playerBody.transform.position.x + 20f);
+            lanePoint = new Vector3(laneX, 13.1f, playerBody.position.z + 75f);
             Instantiate(Lane, lanePoint, Quaternion.identity);
             laneSet = true;
-            //print("LanePoint: " + lanePoint);
+            
         }
         attackTimeDelay -= Time.deltaTime;
         if (attackTimeDelay > 0f)
         {
             //Snowball lane!
 
-            lanePoint = new Vector3(laneX, 0.1f, playerBody.position.z + 110f);
+            lanePoint = new Vector3(laneX, 13.1f, playerBody.position.z + 110f);
         }
         else
         {
@@ -238,7 +239,7 @@ public class YetiAI : MonoBehaviour
         if (jumpCountdown <= 0 && !launching)
         {
             float randChance = Random.Range(0f, 1f);
-            //print(randChance + ": Random Chance");
+            
             if (randChance <= jumpChance)
             {
                 jumpCountdown = Random.Range(-2f, 2f) + 5;
@@ -254,7 +255,7 @@ public class YetiAI : MonoBehaviour
             if (randChance <= snowballChance)
             {
                 snowballCountdown = Random.Range(-3f, 3f) + 8;
-                print("Snow!");
+                
                 attacking = true;
                 
             }
@@ -265,7 +266,7 @@ public class YetiAI : MonoBehaviour
         {
             jumpCountdown -= Time.deltaTime;
             snowballCountdown -= Time.deltaTime;
-            //print(snowballCountdown);
+            
         }
         if (attacking) SummonSnowball();
         if (launching) JumpAttack();
