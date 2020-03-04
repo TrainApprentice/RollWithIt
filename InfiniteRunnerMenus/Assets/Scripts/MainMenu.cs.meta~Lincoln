@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Infinite runner/Assets/Scripts/InputMover.cs.meta
+guid: 26d7e49b666295145af8ccc48c114c4e
+timeCreated: 1505399160
+licenseType: Free
+=======
+guid: 551d7e884b2cced4a93999f1cb89b5a5
+>>>>>>> Lincoln:InfiniteRunnerMenus/Assets/Scripts/MainMenu.cs.meta
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

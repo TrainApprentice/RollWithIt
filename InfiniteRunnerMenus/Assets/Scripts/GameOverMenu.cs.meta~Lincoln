@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Infinite runner/Assets/Scripts/InputManager.cs.meta
+guid: d02af0e7b6e29484d8b85fd8fc8cbfe2
+timeCreated: 1505404812
+licenseType: Free
+=======
+guid: d40778807c2691e42886b7707df445de
+>>>>>>> Lincoln:InfiniteRunnerMenus/Assets/Scripts/GameOverMenu.cs.meta
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
