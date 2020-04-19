@@ -160,7 +160,7 @@ public class YetiAI : MonoBehaviour
             landCooldown = 2.0f;
         }
     }
-    private void OnTriggernEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
 
          if (other.gameObject.CompareTag("Obstacle"))
