@@ -295,6 +295,7 @@ MonoBehaviour:
   zVelocityDisplay: {fileID: 0}
   distanceTraveled: 0
   hit: 0
+  squirrelScript: {fileID: 1872374947}
 --- !u!1 &545880264
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d319436e3b41d4f8a4ba34b0f86615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 533467916}
+  Player: {fileID: 1872374947}
 --- !u!1001 &1052331628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1198,6 +1199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   other: {fileID: 533467916}
   otherRB: {fileID: 0}
+  jumpTimer: 3
 --- !u!1 &1898976666 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8579044191490892736, guid: 333cfa3951c53e8418a23d705b6ebd99,

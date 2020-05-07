@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
     private int acorn;
     private int pointsMult;
     public bool hit;
+
+    public GameObject squirrelScript;
     
 // Justin
     
@@ -102,9 +104,9 @@ public class PlayerController : MonoBehaviour
         */
         
         // manually change size for testing
-        if (Input.GetKeyDown(KeyCode.Space)) distanceTraveled += 10f;
+        /*if (Input.GetKeyDown(KeyCode.Space)) distanceTraveled += 10f;
         if (Input.GetKeyDown(KeyCode.V)) distanceTraveled -= 10f;
-        if (Input.GetKeyDown(KeyCode.M)) print(maxVel);
+        if (Input.GetKeyDown(KeyCode.M)) print(maxVel);*/
 
 
         //calculate mass, angular drag, and size by mapping distanceTraveled to them
@@ -260,12 +262,20 @@ public class PlayerController : MonoBehaviour
 
         else if (other.gameObject.CompareTag("Obstacle"))
         {
-            hit = true;
-            other.gameObject.SetActive(false);
-            distanceTraveled -= 33;
-            if (rb.mass < 1.33) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 2f);
-            else if (rb.mass < 1.66) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 8f);
-            else rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 16f);
+            if(squirrelScript.GetComponent<Squirrel>().jumpTimer <= 3f)
+            {
+                other.gameObject.SetActive(false);
+            }
+            else
+            {
+                hit = true;
+                other.gameObject.SetActive(false);
+                distanceTraveled -= 33;
+                if (rb.mass < 1.33) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 2f);
+                else if (rb.mass < 1.66) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 8f);
+                else rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 16f);
+            }
+            
         }
         else if (other.gameObject.CompareTag("Ground"))
         {
